@@ -1,0 +1,40 @@
+.register {
+  text-align: center;
+}
+.link {
+  padding-top: 10px;
+  text-align: right;
+}
+Form {
+  text-align: center;
+}
+.btn:hover {
+  background-color: dodgerblue;
+}
+.form-control {
+  box-sizing: border-box;
+  margin-bottom: 7px;
+}
+.error {
+  color: red;
+}
+.image {
+  padding-left: 170px;
+}
+.row {
+  display: flex;
+}
+
+.column {
+  flex: 50%;
+}
+h3 {
+  text-align: center;
+}
+li {
+  text-align: center;
+  list-style: decimal;
+  padding-top: 4px;
+  font-size: medium;
+  font-style: oblique;
+}
