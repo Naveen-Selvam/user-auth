@@ -7,13 +7,13 @@ import TextError from "./TextError";
 
 function Login(props) {
   const { handleLogin } = props;
-  const { registered, setRegistered } = props;
   const [loginError, setLoginError] = useState("");
 
   const initialValues = {
     email: "",
     password: "",
   };
+
   const validataionSchema = yup.object({
     email: yup
       .string()
@@ -21,6 +21,7 @@ function Login(props) {
       .required("cannot be blank"),
     password: yup.string().required("cannot be blank"),
   });
+
   const onSubmit = (values, onSubmitProps) => {
     axios
       .post("https://dct-user-auth.herokuapp.com/users/login", values)
@@ -28,13 +29,10 @@ function Login(props) {
         if (response.data.token) {
           localStorage.setItem("token", response.data.token);
           handleLogin();
-          props.history.push("/");
+          props.history.push("/", "you have successfully logged in");
         } else {
           setLoginError(response.data.errors);
-          setRegistered(false);
-          console.log(registered);
         }
-        console.log(registered);
       })
       .catch((err) => {
         alert(err.message);
@@ -44,12 +42,10 @@ function Login(props) {
 
   return (
     <div>
-      {registered ? (
-        <h4 style={{ textAlign: "center", color: "green" }}>
-          You have registered successfully
-        </h4>
-      ) : (
-        ""
+      {props.location.state && (
+        <p style={{ color: "green", textAlign: "center" }}>
+          {props.location.state}
+        </p>
       )}
       {loginError && (
         <h4 style={{ textAlign: "center", color: "red" }}>{loginError}</h4>
@@ -57,7 +53,7 @@ function Login(props) {
 
       <h1 style={{ textAlign: "center" }}>Login to your account</h1>
       <div>
-        <Formik
+        <Formik 
           initialValues={initialValues}
           validationSchema={validataionSchema}
           onSubmit={onSubmit}

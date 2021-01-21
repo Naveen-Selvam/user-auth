@@ -2,33 +2,27 @@ import React from "react";
 import img1 from "./images/download1.jpg";
 
 const Home = (props) => {
-  const { login } = props;
-
   return (
     <div>
-      {login ? (
-        <h4 style={{ textAlign: "center", color: "green" }}>
-          You have logged in successfully
-        </h4>
-      ) : (
-        ""
+      {props.location.state && (
+        <p style={{ color: "green", textAlign: "center" }}>
+          {props.location.state}
+        </p> 
       )}
       <h1 style={{ textAlign: "center", textDecorationColor: "honeydew" }}>
         User Authentication vs User Authorization
       </h1>
-
-      <img
-        className="image"
-        src={img1}
-        alt="home page"
+      <div
         style={{
-          width: "900px",
-          height: "500px",
+          display: "flex",
+          justifyContent: "center",
+          alignItems: "center",
         }}
-      />
-
-      <div class="row">
-        <div class="column">
+      >
+        <img className="image" src={img1} alt="home page" />
+      </div>
+      <div className="row">
+        <div className="column">
           <h3>Authentication</h3>
 
           <li>Determines whether users are who they claim to be</li>
@@ -37,7 +31,7 @@ const Home = (props) => {
           <li>Challenges the user to validate credentials</li>
           <li>Generally governed by the OpenID Connect (OIDC) protocol</li>
         </div>
-        <div class="column">
+        <div className="column">
           <h3>Authorization</h3>
 
           <li>Determines what users can and cannot access</li>

@@ -1,13 +1,14 @@
 .register {
   text-align: center;
 }
-.link {
-  padding-top: 10px;
-  text-align: right;
+button {
+  cursor: pointer;
 }
-Form {
-  text-align: center;
+input {
+  box-sizing: border-box;
+  margin-bottom: 7px;
 }
+
 .btn:hover {
   background-color: dodgerblue;
 }
@@ -19,7 +20,7 @@ Form {
   color: red;
 }
 .image {
-  padding-left: 170px;
+  width: 60%;
 }
 .row {
   display: flex;

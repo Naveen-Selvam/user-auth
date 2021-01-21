@@ -6,17 +6,15 @@ import TextError from "./TextError";
 import { Link } from "react-router-dom";
 
 function Register(props) {
-  const { handleregister } = props;
-
   const initialValues = {
     username: "",
     email: "",
     password: "",
-  };
+  }; 
   const validationSchema = yup.object({
     username: yup.string().min(5).required("cannot be blank"),
     email: yup
-      .string()
+      .string() 
       .email("Invalid email Format")
       .required("cannot be blank"),
     password: yup.string().min(8).max(128).required("cannot be blank"),
@@ -25,14 +23,12 @@ function Register(props) {
     axios
       .post("https://dct-user-auth.herokuapp.com/users/register", values)
       .then((response) => {
-        props.history.push("/Login");
-        handleregister();
+        props.history.push("/Login", "Registered Successfully");
+        onSubmitProps.resetForm();
       })
       .catch((err) => {
         alert(err.message);
       });
-
-    onSubmitProps.resetForm();
   };
   return (
     <div>
